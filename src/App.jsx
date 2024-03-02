@@ -6,7 +6,7 @@ let todoList = [
   { id: 3, title: "Submit Assignment" }
 ];
 
-function App() {
+const App = () => {
   return (
     <>
       <h1>Todo List</h1>
