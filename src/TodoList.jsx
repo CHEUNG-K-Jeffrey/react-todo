@@ -1,3 +1,5 @@
+import TodoListItem from "./TodoListItem";
+
 let todoList = [
     { id: 1, title: "Complete assignment" },
     { id: 2, title: "Review assignment" },
@@ -8,7 +10,7 @@ const TodoList = () => {
     return (
         <ul>
         {todoList.map((item) => (
-          <li key={item.id}>{item.title}</li>
+          <TodoListItem key={item.key} todo={item}/>
         ))}
       </ul>
     )
