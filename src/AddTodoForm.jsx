@@ -12,7 +12,7 @@ const AddTodoForm = (props) => {
         <form onSubmit={handleAddTodo}>
             <label htmlFor="todoTitle">Title</label>
             <input name="title" id="todoTitle" type="text" />
-            <button>Add</button>
+            <button type="submit">Add</button>
         </form>
     )
 }
