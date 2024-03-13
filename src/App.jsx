@@ -1,10 +1,10 @@
-import './App.css'
-import TodoList from './TodoList.jsx'
-import AddTodoForm from './AddTodoForm.jsx'
-import { useState } from 'react'
+import "./App.css";
+import TodoList from "./TodoList.jsx";
+import AddTodoForm from "./AddTodoForm.jsx";
+import { useState } from "react";
 
 const App = () => {
-  const [ newTodo, setNewTodo ] = useState("");
+  const [newTodo, setNewTodo] = useState("");
 
   return (
     <>
@@ -13,7 +13,7 @@ const App = () => {
       <p>{newTodo}</p>
       <TodoList />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
