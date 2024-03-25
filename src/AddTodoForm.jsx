@@ -26,6 +26,7 @@ const AddTodoForm = (props) => {
         id="todoTitle"
         type="text"
         value={todoTitle}
+        required
       />
       <button type="submit">Add</button>
     </form>
