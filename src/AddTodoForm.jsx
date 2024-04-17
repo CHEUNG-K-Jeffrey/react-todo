@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
+import InputWithLabel from "./InputWithLabel";
 
 const AddTodoForm = (props) => {
   const { onAddTodo } = props;
@@ -19,15 +20,12 @@ const AddTodoForm = (props) => {
 
   return (
     <form onSubmit={handleAddTodo}>
-      <label htmlFor="todoTitle">Title</label>
-      <input
-        onChange={handleTitleChange}
-        name="title"
-        id="todoTitle"
-        type="text"
-        value={todoTitle}
-        required
-      />
+      <InputWithLabel
+        handleTitleChange={handleTitleChange}
+        handleAddTodo={handleAddTodo}
+      >
+        Title
+      </InputWithLabel>
       <button type="submit">Add</button>
     </form>
   );
