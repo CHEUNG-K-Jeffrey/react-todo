@@ -6,21 +6,35 @@ import { useEffect, useState } from "react";
 const App = () => {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const fetchData = async () => {
+    const options = {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+      },
+    };
+    const url = `https://api.airtable.com/v0/${
+      import.meta.env.VITE_AIRTABLE_BASE_ID
+    }/${import.meta.env.VITE_TABLE_NAME}`;
+    try {
+      const response = await fetch(url, options);
+      if (response.ok === false) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+
+      const todos = data.records.map((todo) => {
+        return { title: todo.fields.title, id: todo.id };
+      });
+      setTodoList(todos);
+      setIsLoading(false);
+    } catch (error) {
+      console.err(error);
+    }
+  };
 
   useEffect(() => {
-    const newPromise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({
-          data: {
-            todoList: JSON.parse(localStorage.getItem("savedTodoList")) || [],
-          },
-        });
-      }, 2000);
-    });
-    newPromise.then((result) => {
-      setTodoList([...result.data.todoList]);
-      setIsLoading(false);
-    });
+    fetchData();
   }, []);
 
   useEffect(() => {
@@ -41,8 +55,11 @@ const App = () => {
     <>
       <h1>Todo List</h1>
       <AddTodoForm onAddTodo={addTodo} />
-{isLoading ? <p>Loading list...</p> : 
-      <TodoList todoList={todoList} onRemoveTodo={removeTodo} /> }
+      {isLoading ? (
+        <p>Loading list...</p>
+      ) : (
+        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+      )}
     </>
   );
 };
