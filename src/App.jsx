@@ -6,16 +6,18 @@ import { useEffect, useState } from "react";
 const App = () => {
   const [todoList, setTodoList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const url = `https://api.airtable.com/v0/${
+    import.meta.env.VITE_AIRTABLE_BASE_ID
+  }/${import.meta.env.VITE_TABLE_NAME}`;
+  const authenticationHeader = {
+    Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
+  };
+
   const fetchData = async () => {
     const options = {
       method: "GET",
-      headers: {
-        Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
-      },
+      headers: { ...authenticationHeader },
     };
-    const url = `https://api.airtable.com/v0/${
-      import.meta.env.VITE_AIRTABLE_BASE_ID
-    }/${import.meta.env.VITE_TABLE_NAME}`;
     try {
       const response = await fetch(url, options);
       if (response.ok === false) {
@@ -30,6 +32,33 @@ const App = () => {
       setIsLoading(false);
     } catch (error) {
       console.err(error);
+    }
+  };
+
+  const postData = async (todo) => {
+    const airTableData = {
+      fields: {
+        title: todo,
+      },
+    };
+    const options = {
+      method: "POST",
+      headers: {
+        ...authenticationHeader,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(airTableData),
+    };
+    try {
+      const response = await fetch(url, options);
+      if (response.ok === false) {
+        throw new Error(`Error: ${response.status}`);
+      }
+      const data = await response.json();
+      return data.id;
+    } catch (error) {
+      console.error("An error occurred while fetching data or parsing json");
+      throw error;
     }
   };
 
@@ -54,7 +83,11 @@ const App = () => {
   return (
     <>
       <h1>Todo List</h1>
-      <AddTodoForm onAddTodo={addTodo} />
+      <AddTodoForm
+        onAddTodo={addTodo}
+        onRemoveTodo={removeTodo}
+        onPostData={postData}
+      />
       {isLoading ? (
         <p>Loading list...</p>
       ) : (

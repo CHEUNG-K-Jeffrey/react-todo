@@ -3,7 +3,7 @@ import { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
 
 const AddTodoForm = (props) => {
-  const { onAddTodo } = props;
+  const { onAddTodo, onRemoveTodo, onPostData } = props;
   const [todoTitle, setTodoTitle] = useState("");
 
   const handleTitleChange = (event) => {
@@ -11,11 +11,17 @@ const AddTodoForm = (props) => {
     setTodoTitle(newTodoTitle);
   };
 
-  const handleAddTodo = (event) => {
+  const handleAddTodo = async (event) => {
     event.preventDefault();
-    console.log(todoTitle);
-    setTodoTitle("");
-    onAddTodo({ title: todoTitle, id: Date.now() });
+    try {
+      onAddTodo({ title: todoTitle, id: null });
+      const taskId = await onPostData(todoTitle);
+      onRemoveTodo(null);
+      onAddTodo({ title: todoTitle, id: taskId });
+      setTodoTitle("");
+    } catch (error) {
+      onRemoveTodo(null);
+    }
   };
 
   return (
