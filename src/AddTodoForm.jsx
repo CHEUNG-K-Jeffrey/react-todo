@@ -18,7 +18,7 @@ const AddTodoForm = (props) => {
       onAddTodo({ title: newTodo.fields.title, id: newTodo.id });
       setTodoTitle("");
     } catch (error) {
-      onRemoveTodo(null);
+      console.error(error);
     }
   };
 
