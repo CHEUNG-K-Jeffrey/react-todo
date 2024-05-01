@@ -14,10 +14,8 @@ const AddTodoForm = (props) => {
   const handleAddTodo = async (event) => {
     event.preventDefault();
     try {
-      onAddTodo({ title: todoTitle, id: null });
-      const taskId = await onPostData(todoTitle);
-      onRemoveTodo(null);
-      onAddTodo({ title: todoTitle, id: taskId });
+      const newTodo = await onPostData(todoTitle);
+      onAddTodo(newTodo);
       setTodoTitle("");
     } catch (error) {
       onRemoveTodo(null);
