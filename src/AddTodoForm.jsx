@@ -14,13 +14,11 @@ const AddTodoForm = (props) => {
   const handleAddTodo = async (event) => {
     event.preventDefault();
     try {
-      onAddTodo({ title: todoTitle, id: null });
-      const taskId = await onPostData(todoTitle);
-      onRemoveTodo(null);
-      onAddTodo({ title: todoTitle, id: taskId });
+      const newTodo = await onPostData(todoTitle);
+      onAddTodo({ title: newTodo.fields.title, id: newTodo.id });
       setTodoTitle("");
     } catch (error) {
-      onRemoveTodo(null);
+      console.error(error);
     }
   };
 
