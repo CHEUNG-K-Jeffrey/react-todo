@@ -17,6 +17,7 @@ const AddTodoForm = (props) => {
       const newTodo = await onPostData(todoTitle);
       onAddTodo({ title: newTodo.fields.title, id: newTodo.id });
       setTodoTitle("");
+      event.target.reset();
     } catch (error) {
       console.error(error);
     }
