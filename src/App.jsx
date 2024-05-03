@@ -53,7 +53,7 @@ const App = () => {
     };
     try {
       const response = await fetch(url, options);
-      if (response.ok === false) {
+      if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
       const data = await response.json();
