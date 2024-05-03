@@ -57,6 +57,8 @@ const App = () => {
         throw new Error(`Error: ${response.status}`);
       }
       const data = await response.json();
+      fetchData()
+
       return data;
     } catch (error) {
       console.error("An error occurred while fetching data or parsing json");
