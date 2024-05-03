@@ -38,6 +38,7 @@ const App = () => {
   };
 
   const postData = async (todo) => {
+    if (!todo) return;
     const airTableData = {
       fields: {
         title: todo,
@@ -57,7 +58,7 @@ const App = () => {
         throw new Error(`Error: ${response.status}`);
       }
       const data = await response.json();
-      fetchData()
+      fetchData();
 
       return data;
     } catch (error) {
