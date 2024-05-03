@@ -37,7 +37,7 @@ const App = () => {
     }
   };
 
-  const postData = async (todoTitle) => {
+  const postNewTodo = async (todoTitle) => {
     if (!todoTitle) return;
     const airTableData = {
       fields: {
@@ -96,7 +96,7 @@ const App = () => {
               <AddTodoForm
                 onAddTodo={addTodo}
                 onRemoveTodo={removeTodo}
-                onPostData={postData}
+                onPostData={postNewTodo}
               />
               {isLoading ? (
                 <p>Loading list...</p>
