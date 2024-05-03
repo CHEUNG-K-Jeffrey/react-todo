@@ -14,7 +14,7 @@ const App = () => {
     Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
   };
 
-  const fetchData = async () => {
+  const fetchTodoList = async () => {
     const options = {
       method: "GET",
       headers: { ...authenticationHeader },
@@ -58,7 +58,7 @@ const App = () => {
         throw new Error(`Error: ${response.status}`);
       }
       const data = await response.json();
-      fetchData();
+      fetchTodoList();
 
       return data;
     } catch (error) {
@@ -68,7 +68,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchTodoList();
   }, []);
 
   useEffect(() => {
