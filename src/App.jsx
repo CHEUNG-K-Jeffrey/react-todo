@@ -37,11 +37,11 @@ const App = () => {
     }
   };
 
-  const postData = async (todo) => {
-    if (!todo) return;
+  const postData = async (todoTitle) => {
+    if (!todoTitle) return;
     const airTableData = {
       fields: {
-        title: todo,
+        title: todoTitle,
       },
     };
     const options = {
