@@ -2,6 +2,7 @@ import "./App.css";
 import TodoList from "./TodoList.jsx";
 import AddTodoForm from "./AddTodoForm.jsx";
 import { useEffect, useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 const App = () => {
   const [todoList, setTodoList] = useState([]);
@@ -13,7 +14,7 @@ const App = () => {
     Authorization: `Bearer ${import.meta.env.VITE_AIRTABLE_API_TOKEN}`,
   };
 
-  const fetchData = async () => {
+  const fetchTodoList = async () => {
     const options = {
       method: "GET",
       headers: { ...authenticationHeader },
@@ -32,13 +33,15 @@ const App = () => {
       setIsLoading(false);
     } catch (error) {
       console.err(error);
+      setIsLoading(false);
     }
   };
 
-  const postData = async (todo) => {
+  const postNewTodo = async (todoTitle) => {
+    if (!todoTitle) return;
     const airTableData = {
       fields: {
-        title: todo,
+        title: todoTitle,
       },
     };
     const options = {
@@ -51,10 +54,12 @@ const App = () => {
     };
     try {
       const response = await fetch(url, options);
-      if (response.ok === false) {
+      if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }
       const data = await response.json();
+      fetchTodoList();
+
       return data;
     } catch (error) {
       console.error("An error occurred while fetching data or parsing json");
@@ -63,7 +68,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchData();
+    fetchTodoList();
   }, []);
 
   useEffect(() => {
@@ -81,19 +86,36 @@ const App = () => {
   };
 
   return (
-    <>
-      <h1>Todo List</h1>
-      <AddTodoForm
-        onAddTodo={addTodo}
-        onRemoveTodo={removeTodo}
-        onPostData={postData}
-      />
-      {isLoading ? (
-        <p>Loading list...</p>
-      ) : (
-        <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
-      )}
-    </>
+    <BrowserRouter>
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <h1>Todo List</h1>
+              <AddTodoForm
+                onAddTodo={addTodo}
+                onRemoveTodo={removeTodo}
+                onPostData={postNewTodo}
+              />
+              {isLoading ? (
+                <p>Loading list...</p>
+              ) : (
+                <TodoList todoList={todoList} onRemoveTodo={removeTodo} />
+              )}
+            </>
+          }
+        />
+        <Route
+          path="/new"
+          element={
+            <>
+              <h1>New Todo List</h1>
+            </>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
