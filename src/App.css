@@ -20,6 +20,12 @@ h6 {
   color: #121212;
 }
 
+input,
+button {
+  border-color: blue !important;
+  border-style: dashed !important;
+}
+
 #root {
   max-width: 1280px;
   margin: 0 auto;
