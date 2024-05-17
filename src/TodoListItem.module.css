@@ -2,8 +2,7 @@
   color: #0bb0ee;
 }
 
-input,
-button {
-  border-color: blue !important;
-  border-style: dashed !important;
+.ListButton {
+  border-color: blue;
+  border-style: dashed;
 }

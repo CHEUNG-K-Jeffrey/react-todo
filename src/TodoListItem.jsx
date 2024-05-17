@@ -5,7 +5,11 @@ const TodoListItem = (props) => {
   return (
     <li className={style.ListItem}>
       {todo.title}
-      <button type="button" onClick={() => onRemoveTodo(todo.id)}>
+      <button
+        className={style.ListButton}
+        type="button"
+        onClick={() => onRemoveTodo(todo.id)}
+      >
         Remove
       </button>
     </li>
