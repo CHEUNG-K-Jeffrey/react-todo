@@ -4,7 +4,7 @@ import InputWithLabel from "./InputWithLabel";
 import style from "./AddTodoForm.module.css";
 
 const AddTodoForm = (props) => {
-  const { onAddTodo, onRemoveTodo, onPostData } = props;
+  const { onAddTodo, onPostData } = props;
   const [todoTitle, setTodoTitle] = useState("");
 
   const handleTitleChange = (event) => {
@@ -32,7 +32,7 @@ const AddTodoForm = (props) => {
       >
         Title
       </InputWithLabel>
-      <button className={style.AddTodoForm} type="submit">
+      <button className={style.AddTodoFormButton} type="submit">
         Add
       </button>
     </form>
