@@ -93,11 +93,7 @@ const App = () => {
           element={
             <>
               <h1 className={style.Heading}>Todo List</h1>
-              <AddTodoForm
-                onAddTodo={addTodo}
-                onRemoveTodo={removeTodo}
-                onPostData={postNewTodo}
-              />
+              <AddTodoForm onAddTodo={addTodo} onPostData={postNewTodo} />
               {isLoading ? (
                 <p>Loading list...</p>
               ) : (
