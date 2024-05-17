@@ -92,7 +92,7 @@ const App = () => {
           path="/"
           element={
             <>
-              <h1>Todo List</h1>
+              <h1 className={style.Heading}>Todo List</h1>
               <AddTodoForm
                 onAddTodo={addTodo}
                 onRemoveTodo={removeTodo}
