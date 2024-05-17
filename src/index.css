@@ -61,3 +61,21 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+* {
+  padding: 10px;
+  margin: 10px;
+}
+
+body {
+  background-color: #f0f0f8;
+  color: rgb(28, 45, 91);
+  font-family: "Times New Roman", Times, serif;
+}
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
