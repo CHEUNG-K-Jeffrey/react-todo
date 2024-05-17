@@ -1,5 +1,7 @@
 .ListItem {
   color: #0bb0ee;
+  display: flex;
+  justify-content: space-between;
 }
 
 .ListButton {
