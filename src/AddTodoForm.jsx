@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
+import style from "./AddTodoForm.module.css";
 
 const AddTodoForm = (props) => {
   const { onAddTodo, onRemoveTodo, onPostData } = props;
@@ -31,7 +32,9 @@ const AddTodoForm = (props) => {
       >
         Title
       </InputWithLabel>
-      <button type="submit">Add</button>
+      <button className={style.AddTodoForm} type="submit">
+        Add
+      </button>
     </form>
   );
 };
