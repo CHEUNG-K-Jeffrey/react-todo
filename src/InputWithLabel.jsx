@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import style from "./InputWithLabel.module.css";
 
 /* eslint-disable react/prop-types */
 const InputWithLabel = (props) => {
@@ -11,6 +12,7 @@ const InputWithLabel = (props) => {
     <>
       <label htmlFor="todoTitle">{children}</label>
       <input
+        className={style.TodoInput}
         ref={inputRef}
         onChange={handleTitleChange}
         name="title"
