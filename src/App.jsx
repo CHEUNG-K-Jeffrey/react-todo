@@ -1,4 +1,4 @@
-import "./App.css";
+import style from "./App.module.css";
 import TodoList from "./TodoList.jsx";
 import AddTodoForm from "./AddTodoForm.jsx";
 import { useEffect, useState } from "react";
