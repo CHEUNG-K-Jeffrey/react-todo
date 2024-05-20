@@ -5,17 +5,20 @@
 }
 
 .ListButton {
-  border: 1px solid transparent;
+  border: 1px solid white;
   border-radius: 8px;
-  padding: 0.6em 1.2em;
+  padding: 1em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #e4e4e4;
+  background-color: #c51111;
+  color: white;
   cursor: pointer;
   transition: border-color 0.25s;
-  border-color: blue;
-  border-style: dashed;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .ListButton:hover {
