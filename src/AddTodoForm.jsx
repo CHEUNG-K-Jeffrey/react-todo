@@ -25,7 +25,7 @@ const AddTodoForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleAddTodo}>
+    <form className={style.TodoForm} onSubmit={handleAddTodo}>
       <InputWithLabel
         handleTitleChange={handleTitleChange}
         handleAddTodo={handleAddTodo}
