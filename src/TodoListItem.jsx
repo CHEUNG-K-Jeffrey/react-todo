@@ -7,6 +7,7 @@ const TodoListItem = (props) => {
     <li className={style.ListItem}>
       {todo.title}
       <button
+        title="Remove"
         className={style.ListButton}
         type="button"
         onClick={() => onRemoveTodo(todo.id)}
