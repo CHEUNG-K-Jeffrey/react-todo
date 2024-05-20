@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./TodoListItem.module.css";
 const TodoListItem = (props) => {
   const { todo, onRemoveTodo } = props;
@@ -10,7 +11,7 @@ const TodoListItem = (props) => {
         type="button"
         onClick={() => onRemoveTodo(todo.id)}
       >
-        Remove
+        <FontAwesomeIcon icon="fa-solid fa-trash" />
       </button>
     </li>
   );
