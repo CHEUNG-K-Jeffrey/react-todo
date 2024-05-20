@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./AddTodoForm.module.css";
 
 const AddTodoForm = (props) => {
@@ -33,7 +34,7 @@ const AddTodoForm = (props) => {
         Title
       </InputWithLabel>
       <button className={style.AddTodoFormButton} type="submit">
-        Add
+        <FontAwesomeIcon icon="fa-solid fa-plus" />
       </button>
     </form>
   );
