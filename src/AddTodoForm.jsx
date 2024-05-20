@@ -33,7 +33,7 @@ const AddTodoForm = (props) => {
       >
         Title
       </InputWithLabel>
-      <button className={style.AddTodoFormButton} type="submit">
+      <button title="Add" className={style.AddTodoFormButton} type="submit">
         <FontAwesomeIcon icon="fa-solid fa-plus" />
       </button>
     </form>
