@@ -8,13 +8,15 @@
   border-radius: 8px;
   color: #2dff3f;
   padding: 1em;
+  height: 3rem;
+  width: 3rem;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: rgb(25, 146, 79);
   cursor: pointer;
   transition: border-color 0.25s;
-  aspect-ratio: 16/10;
+
   display: flex;
   justify-content: center;
   align-items: center;

@@ -5,7 +5,7 @@ const TodoListItem = (props) => {
   const { todo, onRemoveTodo } = props;
   return (
     <li className={style.ListItem}>
-      {todo.title}
+      <span className={style.ListText}>{todo.title}</span>
       <button
         title="Remove"
         className={style.ListButton}

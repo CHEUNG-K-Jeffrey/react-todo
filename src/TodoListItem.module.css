@@ -2,19 +2,20 @@
   color: #0bb0ee;
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
 }
 
 .ListButton {
   border: 1px solid white;
   border-radius: 8px;
   padding: 1em;
-  font-size: 1em;
   font-weight: 500;
   font-family: inherit;
   background-color: #c51111;
   color: white;
   cursor: pointer;
   transition: border-color 0.25s;
+  height: 3.125em;
   aspect-ratio: 1;
   display: flex;
   justify-content: center;
@@ -27,4 +28,11 @@
 .ListButton:focus,
 .ListButton:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+.ListText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.125em;
 }
