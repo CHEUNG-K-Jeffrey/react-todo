@@ -19,3 +19,21 @@ body {
   width: 100%;
   padding: 2em;
 }
+
+@media only screen and (min-width: 1024px) {
+  #root {
+    padding: 5rem 10em;
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  #root {
+    padding: 5rem 20em;
+  }
+}
+
+@media only screen and (min-width: 1920px) {
+  #root {
+    padding: 5rem 40em;
+  }
+}
