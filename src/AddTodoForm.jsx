@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import InputWithLabel from "./InputWithLabel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import style from "./AddTodoForm.module.css";
 
 const AddTodoForm = (props) => {
-  const { onAddTodo, onRemoveTodo, onPostData } = props;
+  const { onAddTodo, onPostData } = props;
   const [todoTitle, setTodoTitle] = useState("");
 
   const handleTitleChange = (event) => {
@@ -24,14 +26,16 @@ const AddTodoForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleAddTodo}>
+    <form className={style.TodoForm} onSubmit={handleAddTodo}>
       <InputWithLabel
         handleTitleChange={handleTitleChange}
         handleAddTodo={handleAddTodo}
       >
         Title
       </InputWithLabel>
-      <button type="submit">Add</button>
+      <button title="Add" className={style.AddTodoFormButton} type="submit">
+        <FontAwesomeIcon icon="fa-solid fa-plus" />
+      </button>
     </form>
   );
 };

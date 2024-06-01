@@ -1,0 +1,11 @@
+.Input {
+  border-radius: 8px;
+  flex-grow: 0.9;
+}
+
+.Label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.125em;
+}

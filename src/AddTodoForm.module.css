@@ -1,0 +1,31 @@
+.TodoForm {
+  display: flex;
+  justify-content: space-between;
+}
+
+.AddTodoFormButton {
+  border: 1px solid #8bff95;
+  border-radius: 8px;
+  color: #2dff3f;
+  padding: 1em;
+  height: 3rem;
+  width: 3rem;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: rgb(25, 146, 79);
+  cursor: pointer;
+  transition: border-color 0.25s;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.AddTodoFormButton:hover {
+  border-color: #646cff;
+}
+.AddTodoFormButton:focus,
+.AddTodoFormButton:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
