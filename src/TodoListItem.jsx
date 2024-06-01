@@ -4,11 +4,11 @@ import style from "./TodoListItem.module.css";
 const TodoListItem = (props) => {
   const { todo, onRemoveTodo } = props;
   return (
-    <li className={style.ListItem}>
-      <span className={style.ListText}>{todo.title}</span>
+    <li className={style.listItem}>
+      <span className={style.listText}>{todo.title}</span>
       <button
         title="Remove"
-        className={style.ListButton}
+        className={style.listButton}
         type="button"
         onClick={() => onRemoveTodo(todo.id)}
       >

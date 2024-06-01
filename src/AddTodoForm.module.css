@@ -1,9 +1,9 @@
-.TodoForm {
+.todoForm {
   display: flex;
   justify-content: space-between;
 }
 
-.AddTodoFormButton {
+.addTodoFormButton {
   border: 1px solid #8bff95;
   border-radius: 8px;
   color: #2dff3f;
@@ -22,10 +22,10 @@
   align-items: center;
 }
 
-.AddTodoFormButton:hover {
+.addTodoFormButton:hover {
   border-color: #646cff;
 }
-.AddTodoFormButton:focus,
-.AddTodoFormButton:focus-visible {
+.addTodoFormButton:focus,
+.addTodoFormButton:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }

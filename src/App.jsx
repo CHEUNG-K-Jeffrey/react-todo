@@ -97,7 +97,7 @@ const App = () => {
           path="/"
           element={
             <>
-              <h1 className={style.Heading}>Todo List</h1>
+              <h1 className={style.heading}>Todo List</h1>
               <AddTodoForm onAddTodo={addTodo} onPostData={postNewTodo} />
               {isLoading ? (
                 <p>Loading list...</p>

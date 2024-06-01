@@ -5,7 +5,7 @@ import style from "./TodoList.module.css";
 const TodoList = (props) => {
   const { todoList, onRemoveTodo } = props;
   return (
-    <ul className={style.TodoList}>
+    <ul className={style.todoList}>
       {todoList.map((item) => (
         <TodoListItem key={item.id} todo={item} onRemoveTodo={onRemoveTodo} />
       ))}

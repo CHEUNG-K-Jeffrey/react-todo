@@ -26,14 +26,14 @@ const AddTodoForm = (props) => {
   };
 
   return (
-    <form className={style.TodoForm} onSubmit={handleAddTodo}>
+    <form className={style.todoForm} onSubmit={handleAddTodo}>
       <InputWithLabel
         handleTitleChange={handleTitleChange}
         handleAddTodo={handleAddTodo}
       >
         Title
       </InputWithLabel>
-      <button title="Add" className={style.AddTodoFormButton} type="submit">
+      <button title="Add" className={style.addTodoFormButton} type="submit">
         <FontAwesomeIcon icon="fa-solid fa-plus" />
       </button>
     </form>
