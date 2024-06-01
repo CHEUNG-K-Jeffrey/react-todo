@@ -10,11 +10,11 @@ const InputWithLabel = (props) => {
   });
   return (
     <>
-      <label className={style.Label} htmlFor="todoTitle">
+      <label className={style.label} htmlFor="todoTitle">
         {children}
       </label>
       <input
-        className={style.Input}
+        className={style.input}
         ref={inputRef}
         onChange={handleTitleChange}
         name="title"

@@ -1,11 +1,11 @@
-.ListItem {
+.listItem {
   color: #0bb0ee;
   display: flex;
   justify-content: space-between;
   gap: 1rem;
 }
 
-.ListButton {
+.listButton {
   border: 1px solid white;
   border-radius: 8px;
   padding: 1em;
@@ -22,15 +22,15 @@
   align-items: center;
 }
 
-.ListButton:hover {
+.listButton:hover {
   border-color: #646cff;
 }
-.ListButton:focus,
-.ListButton:focus-visible {
+.listButton:focus,
+.listButton:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-.ListText {
+.listText {
   display: flex;
   justify-content: center;
   align-items: center;
