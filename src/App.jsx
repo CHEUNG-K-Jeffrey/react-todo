@@ -74,7 +74,7 @@ const App = () => {
 
   useEffect(() => {
     fetchTodoList();
-  }, [fetchTodoList]);
+  }, []);
 
   useEffect(() => {
     if (isLoading === false) {
