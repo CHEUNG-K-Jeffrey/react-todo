@@ -74,6 +74,7 @@ const App = () => {
 
   useEffect(() => {
     fetchTodoList();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
