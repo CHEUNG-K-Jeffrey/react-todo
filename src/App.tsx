@@ -1,6 +1,6 @@
 import style from "./App.module.css";
-import TodoList from "./TodoList.jsx";
-import AddTodoForm from "./AddTodoForm.jsx";
+import TodoList from "./components/TodoList";
+import AddTodoForm from "./components/AddTodoForm";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -10,7 +10,8 @@ import { fab } from "@fortawesome/free-brands-svg-icons";
 library.add(fas, far, fab);
 
 const App = () => {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList]: [todoList: Todo[], setTodoList: any] =
+    useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const url = `https://api.airtable.com/v0/${
     import.meta.env.VITE_AIRTABLE_BASE_ID
@@ -31,18 +32,20 @@ const App = () => {
       }
       const data = await response.json();
 
-      const todos = data.records.map((todo) => {
-        return { title: todo.fields.title, id: todo.id };
-      });
+      const todos = data.records.map(
+        (todo: { fields: { title: any }; id: any }) => {
+          return { title: todo.fields.title, id: todo.id } as Todo;
+        }
+      );
       setTodoList(todos);
       setIsLoading(false);
     } catch (error) {
-      console.err(error);
+      console.error(error);
       setIsLoading(false);
     }
   };
 
-  const postNewTodo = async (todoTitle) => {
+  const postNewTodo = async (todoTitle: any) => {
     if (!todoTitle) return;
     const airTableData = {
       fields: {
@@ -83,11 +86,11 @@ const App = () => {
     }
   }, [todoList, isLoading]);
 
-  const addTodo = (newTodo) => {
+  const addTodo = (newTodo: Todo) => {
     setTodoList([...todoList, newTodo]);
   };
 
-  const removeTodo = (id) => {
+  const removeTodo = (id: any) => {
     setTodoList(todoList.filter((listItem) => listItem.id !== id));
   };
 
