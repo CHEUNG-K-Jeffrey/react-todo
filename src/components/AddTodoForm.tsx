@@ -3,12 +3,12 @@ import { FormEvent, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./AddTodoForm.module.css";
+import { AddTodoFormProps } from "../types";
 
-const AddTodoForm = (props: { onAddTodo: any; onPostData: any }) => {
+const AddTodoForm = (props: AddTodoFormProps) => {
   const { onAddTodo, onPostData } = props;
   const [todoTitle, setTodoTitle] = useState("");
-
-  const handleTitleChange = (event: { target: { value: any } }) => {
+  const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newTodoTitle = event.target.value;
     setTodoTitle(newTodoTitle);
   };
@@ -17,7 +17,11 @@ const AddTodoForm = (props: { onAddTodo: any; onPostData: any }) => {
     event.preventDefault();
     try {
       const newTodo = await onPostData(todoTitle);
-      onAddTodo({ title: newTodo.fields.title, id: newTodo.id });
+      if (newTodo) {
+        onAddTodo(newTodo);
+      } else {
+        throw new Error("Error while adding undefined or null todo");
+      }
       setTodoTitle("");
       (event.target as HTMLFormElement).reset();
     } catch (error) {
