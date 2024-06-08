@@ -1,16 +1,18 @@
 import style from "./App.module.css";
-import TodoList from "./TodoList.jsx";
-import AddTodoForm from "./AddTodoForm.jsx";
+import TodoList from "./components/TodoList";
+import AddTodoForm from "./components/AddTodoForm";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./types";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
+import { Ttodo, TtodoList } from "./types";
 library.add(fas, far, fab);
 
 const App = () => {
-  const [todoList, setTodoList] = useState([]);
+  const [todoList, setTodoList] = useState<TtodoList>([]);
   const [isLoading, setIsLoading] = useState(true);
   const url = `https://api.airtable.com/v0/${
     import.meta.env.VITE_AIRTABLE_BASE_ID
@@ -31,18 +33,20 @@ const App = () => {
       }
       const data = await response.json();
 
-      const todos = data.records.map((todo) => {
-        return { title: todo.fields.title, id: todo.id };
-      });
+      const todos: TtodoList = data.records.map(
+        (todo: { fields: { title: any }; id: any }) => {
+          return { title: todo.fields.title, id: todo.id } as Ttodo;
+        }
+      );
       setTodoList(todos);
       setIsLoading(false);
     } catch (error) {
-      console.err(error);
+      console.error(error);
       setIsLoading(false);
     }
   };
 
-  const postNewTodo = async (todoTitle) => {
+  const postNewTodo = async (todoTitle: string) => {
     if (!todoTitle) return;
     const airTableData = {
       fields: {
@@ -65,7 +69,7 @@ const App = () => {
       const data = await response.json();
       fetchTodoList();
 
-      return data;
+      return { title: data.fields.title, id: data.id };
     } catch (error) {
       console.error("An error occurred while fetching data or parsing json");
       throw error;
@@ -83,11 +87,11 @@ const App = () => {
     }
   }, [todoList, isLoading]);
 
-  const addTodo = (newTodo) => {
+  const addTodo = (newTodo: Ttodo) => {
     setTodoList([...todoList, newTodo]);
   };
 
-  const removeTodo = (id) => {
+  const removeTodo = (id: string) => {
     setTodoList(todoList.filter((listItem) => listItem.id !== id));
   };
 
