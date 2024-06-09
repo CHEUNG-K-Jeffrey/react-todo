@@ -27,17 +27,28 @@ const App = () => {
       headers: { ...authenticationHeader },
     };
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(
+        `${url}?view=Grid%20view&sort[0][field]=title&sort[0][direction]=asc`,
+        options
+      );
       if (response.ok === false) {
         throw new Error(`Error: ${response.status}`);
       }
       const data = await response.json();
 
-      const todos: TtodoList = data.records.map(
-        (todo: { fields: { title: any }; id: any }) => {
+      const todos: TtodoList = data.records
+        .map((todo: { fields: { title: any }; id: any }) => {
           return { title: todo.fields.title, id: todo.id } as Ttodo;
-        }
-      );
+        }) // Sort by descending order
+        .sort((a: Ttodo, b: Ttodo) => {
+          if (a.title < b.title) {
+            return 1;
+          } else if (a.title === b.title) {
+            return 0;
+          } else {
+            return -1;
+          }
+        });
       setTodoList(todos);
       setIsLoading(false);
     } catch (error) {
