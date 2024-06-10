@@ -37,7 +37,7 @@ const App = () => {
       const data = await response.json();
 
       const todos: TtodoList = data.records
-        .map((todo: { fields: { title: any }; id: any }) => {
+.map((todo: { fields: { title: string }; id: string }) => {
           return { title: todo.fields.title, id: todo.id } as Ttodo;
         }) // Sort by descending order
         .sort((a: Ttodo, b: Ttodo) => {
