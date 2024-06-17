@@ -1,29 +1,32 @@
 import { ReactNode } from "react";
 
-export type Ttodo = {
+export type Todo = {
   id: string;
   title: string;
 };
 
-export type TtodoList = Ttodo[];
+export type TodoList = Todo[];
 
 export interface TodoListItemProps {
-  todo: Ttodo;
+  todo: Todo;
   onRemoveTodo: (id: string) => void;
 }
 
 export interface TodoListProps {
-  todoList: TtodoList;
+  todoList: TodoList;
   onRemoveTodo: (id: string) => void;
 }
 
 export interface AddTodoFormProps {
-  onAddTodo: (newTodo: Ttodo) => void;
-  onPostData: (todoTitle: string) => Promise<Ttodo | undefined>;
+  onAddTodo: (newTodo: string) => void;
 }
 
 export interface InputWithLabelProps {
   children: ReactNode;
   handleTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   todoTitle?: string;
+}
+
+export interface TodoContainerProps {
+  tableName: string;
 }
