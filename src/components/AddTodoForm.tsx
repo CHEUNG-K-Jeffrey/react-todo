@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { FormEvent, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

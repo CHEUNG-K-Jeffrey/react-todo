@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
 import TodoListItem from "./TodoListItem";
 import style from "./TodoList.module.css";
-import { TodoListProps, Todo } from "../types";
+import { Todo, TodoListProps } from "../types";
 
 const TodoList = (props: TodoListProps) => {
   const { todoList, onRemoveTodo } = props;

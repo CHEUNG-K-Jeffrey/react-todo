@@ -1,10 +1,9 @@
 import { useEffect, useState } from "react";
-import { Todo, TodoContainerProps, TodoList } from "../types";
+import { Todo, TodoContainerProps } from "../types";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import style from "./TodoContainer.module.css";
-const { VITE_AIRTABLE_BASE_ID, VITE_TABLE_NAME, VITE_AIRTABLE_API_TOKEN } =
-  import.meta.env;
+const { VITE_AIRTABLE_BASE_ID, VITE_AIRTABLE_API_TOKEN } = import.meta.env;
 const url = `https://api.airtable.com/v0`;
 
 const authenticationHeader = {
@@ -12,15 +11,15 @@ const authenticationHeader = {
 };
 
 const TodoContainer = (props: TodoContainerProps) => {
-  const tableName = VITE_TABLE_NAME;
-  const [todoList, setTodoList] = useState<TodoList>([]);
+  const { tableName } = props;
+  const [todoList, setTodoList] = useState<Todo[]>(new Array<Todo>());
   const [isLoading, setIsLoading] = useState(true);
 
   const addTodo = async (title: string) => {
     if (!title) return;
     try {
       const response = await fetch(
-        `url/${VITE_AIRTABLE_BASE_ID}/${tableName}`,
+        `${url}/${VITE_AIRTABLE_BASE_ID}/${tableName}`,
         {
           method: "POST",
           headers: {
@@ -50,7 +49,7 @@ const TodoContainer = (props: TodoContainerProps) => {
   const removeTodo = async (id: string) => {
     try {
       const response = await fetch(
-        `url/${VITE_AIRTABLE_BASE_ID}/${tableName}/${id}`,
+        `${url}/${VITE_AIRTABLE_BASE_ID}/${tableName}/${id}`,
         {
           method: "DELETE",
           headers: {
@@ -66,7 +65,9 @@ const TodoContainer = (props: TodoContainerProps) => {
 
       const data = await response.json();
       if (data.deleted && data.id === id) {
-        setTodoList(todoList.filter((listItem) => listItem.id !== id));
+        setTodoList(
+          todoList.filter((listItem: { id: string }) => listItem.id !== id)
+        );
       } else {
         throw new Error(`Error: Something went wrong while deleting.`);
       }
@@ -75,6 +76,7 @@ const TodoContainer = (props: TodoContainerProps) => {
     }
   };
 
+  // Runs once when table loads
   useEffect(() => {
     (async () => {
       const options = {
@@ -83,7 +85,7 @@ const TodoContainer = (props: TodoContainerProps) => {
       };
       try {
         const response = await fetch(
-          `${url}/${tableName}?view=Grid%20view&sort[0][field]=title&sort[0][direction]=asc`,
+          `${url}/${VITE_AIRTABLE_BASE_ID}/${tableName}?view=Grid%20view&sort[0][field]=title&sort[0][direction]=asc`,
           options
         );
         if (response.ok === false) {
@@ -91,11 +93,11 @@ const TodoContainer = (props: TodoContainerProps) => {
         }
         const data = await response.json();
 
-        const todos: TodoList = data.records
+        const todos: [] = data.records
           .map((todo: { fields: { title: string }; id: string }) => {
             return { title: todo.fields.title, id: todo.id } as Todo;
           }) // Sort by descending order
-          .sort((a: Todo, b: Todo) => {
+          .sort((a: { title: string }, b: { title: string }) => {
             if (a.title < b.title) {
               return 1;
             } else if (a.title === b.title) {
@@ -111,7 +113,7 @@ const TodoContainer = (props: TodoContainerProps) => {
         setIsLoading(false);
       }
     })();
-  }, [isLoading, tableName, todoList]);
+  }, [tableName]);
 
   return (
     <>

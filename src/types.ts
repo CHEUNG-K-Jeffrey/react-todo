@@ -5,15 +5,13 @@ export type Todo = {
   title: string;
 };
 
-export type TodoList = Todo[];
-
 export interface TodoListItemProps {
-  todo: Todo;
+  todo: { id: string; title: string };
   onRemoveTodo: (id: string) => void;
 }
 
 export interface TodoListProps {
-  todoList: TodoList;
+  todoList: Todo[];
   onRemoveTodo: (id: string) => void;
 }
 
