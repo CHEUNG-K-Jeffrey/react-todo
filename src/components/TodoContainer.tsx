@@ -3,6 +3,7 @@ import { Todo, TodoContainerProps } from "../types";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import style from "./TodoContainer.module.css";
+import { toast } from "react-toastify";
 const { VITE_AIRTABLE_BASE_ID, VITE_AIRTABLE_API_TOKEN } = import.meta.env;
 const url = `https://api.airtable.com/v0`;
 
@@ -40,6 +41,17 @@ const TodoContainer = (props: TodoContainerProps) => {
 
       const data = await response.json();
       setTodoList([...todoList, { title: data.fields.title, id: data.id }]);
+      toast.success(
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <span>Added task</span>
+        </div>,
+        {
+          autoClose: 5000,
+          hideProgressBar: false,
+          toastId: data.id,
+          containerId: "tasks",
+        }
+      );
     } catch (error) {
       console.error("An error occurred while fetching data or parsing json");
       throw error;
@@ -47,6 +59,17 @@ const TodoContainer = (props: TodoContainerProps) => {
   };
 
   const removeTodo = async (id: string) => {
+    toast.success(
+      <div style={{ display: "flex", justifyContent: "space-between" }}>
+        <span>Deleted task</span>
+      </div>,
+      {
+        autoClose: 5000,
+        hideProgressBar: false,
+        toastId: id,
+        containerId: "tasks",
+      }
+    );
     try {
       const response = await fetch(
         `${url}/${VITE_AIRTABLE_BASE_ID}/${tableName}/${id}`,
@@ -106,7 +129,7 @@ const TodoContainer = (props: TodoContainerProps) => {
               return -1;
             }
           });
-        setTodoList(todos);
+        setTodoList([...todos]);
       } catch (error) {
         console.error(error);
       } finally {

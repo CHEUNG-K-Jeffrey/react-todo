@@ -5,6 +5,9 @@ import { fas } from "@fortawesome/free-solid-svg-icons";
 import { far } from "@fortawesome/free-regular-svg-icons";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import TodoContainer from "./components/TodoContainer";
+import { ToastContainer } from "react-toastify";
+
+import "react-toastify/dist/ReactToastify.css";
 const { VITE_TABLE_NAME } = import.meta.env;
 library.add(fas, far, fab);
 
@@ -14,7 +17,16 @@ const App = () => {
       <Routes>
         <Route
           path="/"
-          element={<TodoContainer tableName={VITE_TABLE_NAME} />}
+          element={
+            <>
+              <TodoContainer tableName={VITE_TABLE_NAME} />
+              <ToastContainer
+                stacked
+                position="bottom-left"
+                containerId="tasks"
+              />
+            </>
+          }
         />
         <Route
           path="/new"
