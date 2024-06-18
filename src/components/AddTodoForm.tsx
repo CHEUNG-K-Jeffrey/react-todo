@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { FormEvent, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,22 +5,17 @@ import style from "./AddTodoForm.module.css";
 import { AddTodoFormProps } from "../types";
 
 const AddTodoForm = (props: AddTodoFormProps) => {
-  const { onAddTodo, onPostData } = props;
+  const { onAddTodo } = props;
   const [todoTitle, setTodoTitle] = useState("");
+
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newTodoTitle = event.target.value;
-    setTodoTitle(newTodoTitle);
+    setTodoTitle(event.target.value);
   };
 
   const handleAddTodo = async (event: FormEvent) => {
     event.preventDefault();
     try {
-      const newTodo = await onPostData(todoTitle);
-      if (newTodo) {
-        onAddTodo(newTodo);
-      } else {
-        throw new Error("Error while adding undefined or null todo");
-      }
+      onAddTodo(todoTitle);
       setTodoTitle("");
       (event.target as HTMLFormElement).reset();
     } catch (error) {
