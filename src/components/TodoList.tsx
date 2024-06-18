@@ -4,6 +4,7 @@ import { Todo, TodoListProps } from "../types";
 
 const TodoList = (props: TodoListProps) => {
   const { todoList, onRemoveTodo } = props;
+
   return (
     <ul className={style.todoList}>
       {todoList.map((item: Todo) => (
