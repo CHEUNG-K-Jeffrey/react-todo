@@ -5,12 +5,14 @@ import { InputWithLabelProps } from "../types";
 const InputWithLabel = (props: InputWithLabelProps) => {
   const { children, handleTitleChange, todoTitle } = props;
   const inputRef = useRef<HTMLInputElement>(null);
+
   useEffect(() => {
     (inputRef.current as HTMLInputElement).focus();
   });
+
   return (
     <>
-      <label className={style.label} htmlFor="todoTitle">
+      <label className={style.label} htmlFor="todo-title">
         {children}
       </label>
       <input
@@ -18,7 +20,7 @@ const InputWithLabel = (props: InputWithLabelProps) => {
         ref={inputRef}
         onChange={handleTitleChange}
         name="title"
-        id="todoTitle"
+        id="todo-title"
         type="text"
         value={todoTitle}
         required
@@ -26,4 +28,5 @@ const InputWithLabel = (props: InputWithLabelProps) => {
     </>
   );
 };
+
 export default InputWithLabel;
