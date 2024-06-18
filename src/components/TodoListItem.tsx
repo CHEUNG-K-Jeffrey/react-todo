@@ -5,6 +5,7 @@ import { TodoListItemProps } from "../types";
 
 const TodoListItem = (props: TodoListItemProps) => {
   const { todo, onRemoveTodo } = props;
+
   return (
     <li className={style.listItem}>
       <span className={style.listText}>{todo.title}</span>
