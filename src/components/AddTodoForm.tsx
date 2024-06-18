@@ -7,9 +7,9 @@ import { AddTodoFormProps } from "../types";
 const AddTodoForm = (props: AddTodoFormProps) => {
   const { onAddTodo } = props;
   const [todoTitle, setTodoTitle] = useState("");
+
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newTodoTitle = event.target.value;
-    setTodoTitle(newTodoTitle);
+    setTodoTitle(event.target.value);
   };
 
   const handleAddTodo = async (event: FormEvent) => {
