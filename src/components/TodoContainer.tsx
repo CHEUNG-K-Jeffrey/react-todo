@@ -44,7 +44,20 @@ const TodoContainer = (props: TodoContainerProps) => {
       }
 
       const data = await response.json();
-      setTodoList([...todoList, { title: data.fields.title, id: data.id }]);
+      // Set to sorted descending list
+      setTodoList(
+        [...todoList, { title: data.fields.title, id: data.id }].sort(
+          (a: { title: string }, b: { title: string }) => {
+            if (a.title < b.title) {
+              return 1;
+            } else if (a.title === b.title) {
+              return 0;
+            } else {
+              return -1;
+            }
+          }
+        )
+      );
       toast.success(
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <span>Added task</span>
