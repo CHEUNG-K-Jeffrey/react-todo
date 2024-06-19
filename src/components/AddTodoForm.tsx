@@ -2,7 +2,10 @@ import { FormEvent, useState } from "react";
 import InputWithLabel from "./InputWithLabel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./AddTodoForm.module.css";
-import { AddTodoFormProps } from "../types";
+
+export interface AddTodoFormProps {
+  onAddTodo: (newTodo: string) => void;
+}
 
 const AddTodoForm = (props: AddTodoFormProps) => {
   const { onAddTodo } = props;

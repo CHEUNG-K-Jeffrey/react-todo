@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
-import { Todo, TodoContainerProps } from "../types";
 import TodoList from "./TodoList";
 import AddTodoForm from "./AddTodoForm";
 import style from "./TodoContainer.module.css";
 import { toast } from "react-toastify";
+import { Todo } from "../types";
 const { VITE_AIRTABLE_BASE_ID, VITE_AIRTABLE_API_TOKEN } = import.meta.env;
 const url = `https://api.airtable.com/v0`;
 
 const authenticationHeader = {
   Authorization: `Bearer ${VITE_AIRTABLE_API_TOKEN}`,
 };
+
+export interface TodoContainerProps {
+  tableName: string;
+}
 
 const TodoContainer = (props: TodoContainerProps) => {
   const { tableName } = props;
