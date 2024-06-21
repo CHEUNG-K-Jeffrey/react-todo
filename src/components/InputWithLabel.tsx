@@ -1,6 +1,12 @@
 import { useEffect, useRef } from "react";
 import style from "./InputWithLabel.module.css";
-import { InputWithLabelProps } from "../types";
+
+import { ReactNode } from "react";
+export interface InputWithLabelProps {
+  children: ReactNode;
+  handleTitleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  todoTitle?: string;
+}
 
 const InputWithLabel = (props: InputWithLabelProps) => {
   const { children, handleTitleChange, todoTitle } = props;

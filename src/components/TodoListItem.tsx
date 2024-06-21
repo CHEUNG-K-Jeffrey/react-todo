@@ -1,7 +1,11 @@
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import style from "./TodoListItem.module.css";
-import { TodoListItemProps } from "../types";
+
+export interface TodoListItemProps {
+  todo: { id: string; title: string };
+  onRemoveTodo: (id: string) => void;
+}
 
 const TodoListItem = (props: TodoListItemProps) => {
   const { todo, onRemoveTodo } = props;
